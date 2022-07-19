@@ -1,0 +1,16 @@
+POST {{host_file}}/fileInfos
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="files"; filename="111.txt"
+Content-Type: multipart/form-data
+
+< D:\Sources\Files\111.txt
+--WebAppBoundary--
+
+###
+GET {{host_file}}/fileInfos/68f40e712e948960fccf3b2d74425524
+
+###
+
+GET {{host_file}}/fileInfos

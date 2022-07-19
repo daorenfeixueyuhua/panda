@@ -1,0 +1,9 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.daoren.web.handler.ResponseResultHandler,\
+  com.daoren.web.config.PandaWebMvcConfig, \
+  com.daoren.web.config.FilterConfig, \
+  com.daoren.web.config.PandaWebMvcConfigurerAdapter, \
+  com.daoren.web.handler.ApiVersionRequestMappingHandlerMapping,\
+  com.daoren.web.handler.GlobalExceptionHandler,\
+  com.daoren.web.handler.ValidationInterceptor, \
+  com.daoren.web.ser.ResultSerializer

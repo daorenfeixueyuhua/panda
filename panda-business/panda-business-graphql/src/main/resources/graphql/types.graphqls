@@ -1,0 +1,15 @@
+### 自定义-标量类型 ###
+scalar Long
+scalar DateLong
+scalar DateTime
+scalar DateBeautify
+scalar LocalDateTime
+
+
+
+type Query {
+    # 查询单条记录
+    getOne(id: String!): OperateLog
+    # 查询所有
+    logs(entity: InputOperateLog): [OperateLog]
+}

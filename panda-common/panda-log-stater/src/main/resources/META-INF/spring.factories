@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.daoren.log.aspect.LogAspect,\
+  com.daoren.log.service.impl.SysOperateLogServiceImpl

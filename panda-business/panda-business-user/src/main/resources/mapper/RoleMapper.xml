@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.daoren.user.mapper.RoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.daoren.user.model.entity.Role">
+        <result column="id" property="id"/>
+        <result column="sys_create_time" property="sysCreateTime"/>
+        <result column="sys_create_user" property="sysCreateUser"/>
+        <result column="sys_update_time" property="sysUpdateTime"/>
+        <result column="sys_update_user" property="sysUpdateUser"/>
+        <result column="sys_delete_time" property="sysDeleteTime"/>
+        <result column="sys_delete_user" property="sysDeleteUser"/>
+        <result column="sys_enable" property="sysEnable"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id
+        ,
+        sys_create_time,
+        sys_create_user,
+        sys_update_time,
+        sys_update_user,
+        sys_delete_time,
+        sys_delete_user,
+        sys_enable,
+        name
+    </sql>
+
+</mapper>

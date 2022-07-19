@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.daoren.json.config.JacksonConfig,\
+  com.daoren.json.config.DateTimeFormatterConfig, \
+  com.daoren.json.deser.CLocalDateTimeDeserializer, \
+  com.daoren.json.ser.CLocalDateTimeSerializer

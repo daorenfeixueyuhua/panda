@@ -1,0 +1,76 @@
+# Use root/example as user/password credentials
+version: "3.1"
+services:
+  mysql:
+    restart: always
+    image: mysql
+    container_name: mysql
+    environment:
+      - MYSQL_PORT=3306
+    ports:
+      - "3306:3306"
+    volumes:
+      - D:\Software\docker\mysql\data:/var/lib/mysql
+      - D:\Software\docker\mysql\conf\mysql.conf:/etc/mysql/mysql.conf.d/mysql.conf
+      - D:\Software\docker\mysql\log:/var/log/mysql
+      - D:\Software\docker\mysql\mysql-files:/var/lib/mysql-files/
+
+  nacos:
+    image: nacos/nacos-server
+    container_name: nacos
+    environment:
+      - PREFER_HOST_MODE=hostname
+      - MODE=standalone
+      - SPRING_DATASOURCE_PLATFORM=mysql
+      - MYSQL_SERVICE_HOST=mysql
+      - MYSQL_SERVICE_DB_NAME=nacos_config
+      - MYSQL_SERVICE_PORT=3306
+      - MYSQL_SERVICE_USER=root
+      - MYSQL_SERVICE_PASSWORD=123456
+      - NACOS_APPLICATION_PORT=8848
+      - JVM_XMS=512m
+      - JVM_MMS=320m
+    volumes:
+      - D:\Software\docker\nacos\standalone-logs/:/home/nacos/logs
+      - D:\Software\docker\nacos\plugins/:/home/nacos/plugins
+    ports:
+      - "8848:8848"
+      - "8849:8849"
+      - "9848:9848"
+      - "9849:9849"
+    expose:
+      - 8848
+      - 8849
+      - 9848
+      - 9849
+    depends_on:
+      - mysql
+    restart: always
+
+  #redis容器
+  redis:
+    #定义主机名
+    container_name: redis
+    #使用的镜像
+    image: redis
+    #容器的映射端口
+    ports:
+      - 6380:6379
+    command: redis-server /etc/conf/redis.conf
+    #定义挂载点
+    volumes:
+      - D:\Software\docker\redis\data:/data
+      - D:\Software\docker\redis\conf\redis.conf:/etc/conf/redis.conf
+    #环境变量
+    privileged: true
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+
+  # 网关
+  api:
+    image: panda-gateway-cloud
+    network_mode: host
+    container_name: api
+    ports:
+      - 8080:8080
