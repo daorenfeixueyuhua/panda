@@ -1,4 +1,4 @@
-package com.daoren.graphsqlql;
+package com.daoren.graphql;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

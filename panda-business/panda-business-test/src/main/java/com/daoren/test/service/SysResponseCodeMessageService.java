@@ -1,7 +1,7 @@
 package com.daoren.test.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.daoren.graphsqlql.model.entity.SysResponseCodeMessage;
+import com.daoren.graphql.model.entity.SysResponseCodeMessage;
 
 /**
  * <p>

@@ -1,10 +1,10 @@
-package com.daoren.graphsqlql.resolvers;
+package com.daoren.graphql.resolvers;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import com.daoren.graphsqlql.mapper.OperateLogMapper;
-import com.daoren.graphsqlql.model.entity.OperateLog;
+import com.daoren.graphql.mapper.OperateLogMapper;
+import com.daoren.graphql.model.entity.OperateLog;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

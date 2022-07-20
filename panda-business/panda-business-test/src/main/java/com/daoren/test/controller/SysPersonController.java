@@ -2,7 +2,7 @@ package com.daoren.test.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.daoren.graphsqlql.model.entity.SysPerson;
+import com.daoren.graphql.model.entity.SysPerson;
 import com.daoren.test.service.SysPersonService;
 import com.daoren.web.annotation.ResponseResult;
 import org.hibernate.validator.constraints.Length;

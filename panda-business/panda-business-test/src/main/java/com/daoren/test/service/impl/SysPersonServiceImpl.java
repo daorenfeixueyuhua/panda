@@ -1,8 +1,8 @@
 package com.daoren.test.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.daoren.graphsqlql.mapper.SysPersonMapper;
-import com.daoren.graphsqlql.model.entity.SysPerson;
+import com.daoren.graphql.mapper.SysPersonMapper;
+import com.daoren.graphql.model.entity.SysPerson;
 import com.daoren.test.service.SysPersonService;
 import org.springframework.stereotype.Service;
 

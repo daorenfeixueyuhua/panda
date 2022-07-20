@@ -1,4 +1,4 @@
-package com.daoren.graphsqlql.model.entity;
+package com.daoren.graphql.model.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.daoren.mybatis.entity.BaseEntity;

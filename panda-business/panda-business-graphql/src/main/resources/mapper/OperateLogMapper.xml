@@ -3,7 +3,7 @@
 <mapper namespace="com.daoren.graphsqlql.mapper.OperateLogMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.daoren.graphsqlql.model.entity.OperateLog">
+    <resultMap id="BaseResultMap" type="com.daoren.graphql.model.entity.OperateLog">
         <result column="id" property="id"/>
         <result column="sys_create_time" property="sysCreateTime"/>
         <result column="sys_create_user" property="sysCreateUser"/>

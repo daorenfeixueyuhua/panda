@@ -1,8 +1,8 @@
 package com.daoren.test.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.daoren.graphsqlql.mapper.SysResponseCodeMessageMapper;
-import com.daoren.graphsqlql.model.entity.SysResponseCodeMessage;
+import com.daoren.graphql.mapper.SysResponseCodeMessageMapper;
+import com.daoren.graphql.model.entity.SysResponseCodeMessage;
 import com.daoren.test.service.SysResponseCodeMessageService;
 import org.springframework.stereotype.Service;
 

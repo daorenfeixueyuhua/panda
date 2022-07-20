@@ -1,7 +1,7 @@
-package com.daoren.graphsqlql.mapper;
+package com.daoren.graphql.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.daoren.graphsqlql.model.entity.OperateLog;
+import com.daoren.graphql.model.entity.OperateLog;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
