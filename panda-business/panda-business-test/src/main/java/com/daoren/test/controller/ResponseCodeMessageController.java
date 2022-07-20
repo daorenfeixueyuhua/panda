@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author daoren
- * @since 2022-03-04
+ * @since 2022-07-20
  */
 @RestController
-@RequestMapping("/sys-response-code-message")
-public class SysResponseCodeMessageController {
+@RequestMapping("/response-code-message")
+public class ResponseCodeMessageController {
 
 }

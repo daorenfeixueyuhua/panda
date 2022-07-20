@@ -13,7 +13,7 @@ public class GenTest {
     @Test
     public void runGen() {
         String[] include = new String[]{
-                "sys_operate_log"
+                "sys_response_code_message"
         };
         generator.run(include);
     }

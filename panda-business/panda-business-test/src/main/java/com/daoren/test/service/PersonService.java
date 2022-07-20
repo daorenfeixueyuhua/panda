@@ -1,7 +1,7 @@
 package com.daoren.test.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.daoren.graphql.model.entity.SysPerson;
+import com.daoren.test.model.entity.Person;
 
 /**
  * <p>
@@ -9,9 +9,9 @@ import com.daoren.graphql.model.entity.SysPerson;
  * </p>
  *
  * @author daoren
- * @since 2022-03-03
+ * @since 2022-07-20
  */
-public interface SysPersonService extends IService<SysPerson> {
+public interface PersonService extends IService<Person> {
 
     /**
      * 从缓存获取数据
@@ -21,5 +21,6 @@ public interface SysPersonService extends IService<SysPerson> {
      * @author peng_da
      * @since 2022/3/10 13:59
      */
-    SysPerson cacheOne(String id);
+    Person cacheOne(String id);
+
 }

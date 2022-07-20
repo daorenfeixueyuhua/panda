@@ -3,7 +3,7 @@ server:
   port: 9091
 
 project:
-  path: D:\Projects\Custom\panda\panda-business\panda-business-graphql
+  path: D:\Projects\Custom\panda\panda-business\panda-business-test
 
 # Spring
 spring:

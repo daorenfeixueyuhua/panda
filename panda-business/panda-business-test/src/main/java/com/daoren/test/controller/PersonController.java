@@ -2,8 +2,8 @@ package com.daoren.test.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.daoren.graphql.model.entity.SysPerson;
-import com.daoren.test.service.SysPersonService;
+import com.daoren.test.model.entity.Person;
+import com.daoren.test.service.PersonService;
 import com.daoren.web.annotation.ResponseResult;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.annotation.Validated;
@@ -17,29 +17,28 @@ import java.util.List;
  * </p>
  *
  * @author daoren
- * @since 2022-03-03
+ * @since 2022-07-20
  */
 @RestController
 @RequestMapping("/person")
-public class SysPersonController {
-    private final SysPersonService personService;
+public class PersonController {
+    private final PersonService personService;
 
-    public SysPersonController(SysPersonService personService) {
+    public PersonController(PersonService personService) {
         this.personService = personService;
     }
 
 
     @ResponseResult
     @PostMapping("/list")
-    public List<SysPerson> list(@Validated SysPerson entity) {
-        return personService.list(new QueryWrapper<SysPerson>().setEntity(entity));
+    public List<Person> list(@Validated Person entity) {
+        return personService.list(new QueryWrapper<Person>().setEntity(entity));
     }
 
     @Validated
     @ResponseResult
     @GetMapping("/{id}")
-    public SysPerson one(@Length(min = 32, max = 32) @PathVariable(name = "id") String id) {
+    public Person one(@Length(min = 32, max = 32) @PathVariable(name = "id") String id) {
         return personService.cacheOne(id);
     }
-
 }

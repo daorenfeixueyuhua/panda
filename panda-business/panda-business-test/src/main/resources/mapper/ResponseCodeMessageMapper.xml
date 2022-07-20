@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.daoren.graphsqlql.mapper.SysPersonMapper">
+<mapper namespace="com.daoren.test.mapper.ResponseCodeMessageMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.daoren.graphsqlql.model.entity.SysPerson">
+    <resultMap id="BaseResultMap" type="com.daoren.test.model.entity.ResponseCodeMessage">
         <result column="id" property="id"/>
         <result column="sys_create_time" property="sysCreateTime"/>
         <result column="sys_create_user" property="sysCreateUser"/>
@@ -12,9 +12,9 @@
         <result column="sys_delete_time" property="sysDeleteTime"/>
         <result column="sys_delete_user" property="sysDeleteUser"/>
         <result column="sys_enable" property="sysEnable"/>
-        <result column="name" property="name"/>
-        <result column="birth" property="birth"/>
-        <result column="id_card" property="idCard"/>
+        <result column="code" property="code"/>
+        <result column="message" property="message"/>
+        <result column="count" property="count"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -28,7 +28,7 @@
         sys_delete_time,
         sys_delete_user,
         sys_enable,
-        name, birth, id_card
+        code, message, count
     </sql>
 
 </mapper>
