@@ -1,10 +1,12 @@
-package com.daoren.graphsqlql.config;
+package com.daoren.graphql.config;
 
-import com.daoren.graphsqlql.extend.FdGraphQLObjectMapper;
+
+import com.daoren.graphql.extend.FdGraphQLObjectMapper;
 import graphql.servlet.GraphQLObjectMapper;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 /**
  * @author peng_da
@@ -12,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * @date 2022/7/19 15:03
  * @since :
  */
+@ComponentScan("com.daoren.graphql.extend.**")
 @Configuration
 public class MyGraphQlConfig {
 
@@ -20,11 +23,6 @@ public class MyGraphQlConfig {
     public GraphQLObjectMapper graphQLObjectMapper() {
         FdGraphQLObjectMapper.Builder builder = FdGraphQLObjectMapper.newBuilder2();
         return builder.build();
-    }
-
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
 }

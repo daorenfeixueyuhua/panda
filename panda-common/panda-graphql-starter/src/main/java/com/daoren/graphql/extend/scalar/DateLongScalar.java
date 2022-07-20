@@ -1,4 +1,4 @@
-package com.daoren.graphsqlql.extend.scalar;
+package com.daoren.graphql.extend.scalar;
 
 import graphql.language.IntValue;
 import graphql.schema.Coercing;

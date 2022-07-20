@@ -19,6 +19,7 @@
         <module>panda-log-stater</module>
         <module>panda-common-starter</module>
         <module>panda-redis-starter</module>
+        <module>panda-graphql-starter</module>
     </modules>
 
     <properties>

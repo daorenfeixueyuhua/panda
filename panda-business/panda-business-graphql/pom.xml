@@ -104,16 +104,9 @@
             <artifactId>graphiql-spring-boot-starter</artifactId>
         </dependency>
 
-        <!--    核心控制器的 starter  源码是根据GraphQLWebAutoConfiguration 中的graphQLServletRegistrationBean 向spring 容器注入的Servlet实现
-               该Servlet有几个默认实现 SimpleGraphQLHttpServlet 和 OsgiGraphQLHttpServlet Osgi为一个动态模型系统（没听过，默认使用Simple）
-             -->
         <dependency>
-            <groupId>com.graphql-java</groupId>
-            <artifactId>graphql-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.graphql-java</groupId>
-            <artifactId>graphql-java-tools</artifactId>
+            <groupId>com.daoren</groupId>
+            <artifactId>panda-graphql-starter</artifactId>
         </dependency>
     </dependencies>
 

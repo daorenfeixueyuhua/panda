@@ -89,6 +89,11 @@
                 <artifactId>panda-business-file</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.daoren</groupId>
+                <artifactId>panda-graphql-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
 
             <dependency>
