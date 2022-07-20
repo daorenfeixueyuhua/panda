@@ -26,49 +26,57 @@
     </properties>
     <build>
         <finalName>${project.name}</finalName>
+        <pluginManagement>
+            <plugins>
+                <!-- 指定启动类，将依赖打成外部jar包 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
+                    <configuration>
+                        <archive>
+                            <!-- 生成的jar中，不要包含pom.xml和pom.properties这两个文件 -->
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                            <manifest>
+                                <!-- 是否要把第三方jar加入到类构建路径 -->
+                                <addClasspath>true</addClasspath>
+                                <!-- 外部依赖jar包的最终位置 -->
+                                <!-- 因为我们将第三方jar和本项目jar放在同一个目录下，这里就使用./ -->
+                                <classpathPrefix>./</classpathPrefix>
+                                <!-- 项目启动类 -->
+                                <!--                                <mainClass>com.daoren.test.TestApplication</mainClass>-->
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <!--主要使用的是maven提供的assembly插件完成-->
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven-assembly-plugin.version}</version>
+                    <configuration>
+                        <descriptors>
+                            <!--具体的配置文件-->
+                            <descriptor>src/main/assembly/assembly.xml</descriptor>
+                        </descriptors>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id>
+                            <!--绑定到maven操作类型上-->
+                            <phase>package</phase>
+                            <!--运行一次-->
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
-            <!-- 指定启动类，将依赖打成外部jar包 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>${maven-jar-plugin.version}</version>
-                <configuration>
-                    <archive>
-                        <!-- 生成的jar中，不要包含pom.xml和pom.properties这两个文件 -->
-                        <addMavenDescriptor>false</addMavenDescriptor>
-                        <manifest>
-                            <!-- 是否要把第三方jar加入到类构建路径 -->
-                            <addClasspath>true</addClasspath>
-                            <!-- 外部依赖jar包的最终位置 -->
-                            <!-- 因为我们将第三方jar和本项目jar放在同一个目录下，这里就使用./ -->
-                            <classpathPrefix>./</classpathPrefix>
-                            <!-- 项目启动类 -->
-                            <mainClass>com.daoren.test.TestApplication</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-            <plugin>
-                <!--主要使用的是maven提供的assembly插件完成-->
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>${maven-assembly-plugin.version}</version>
-                <configuration>
-                    <descriptors>
-                        <!--具体的配置文件-->
-                        <descriptor>src/main/assembly/assembly.xml</descriptor>
-                    </descriptors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <!--绑定到maven操作类型上-->
-                        <phase>package</phase>
-                        <!--运行一次-->
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>maven-source-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
