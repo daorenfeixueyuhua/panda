@@ -18,6 +18,7 @@
         <module>panda-selenium-business</module>
         <module>panda-business-acm</module>
         <module>panda-business-graphql</module>
+        <module>panda-business-camunda</module>
     </modules>
 
     <properties>

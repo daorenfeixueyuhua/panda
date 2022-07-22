@@ -43,6 +43,7 @@
         <commons-io.version>RELEASE</commons-io.version>
         <graphql-java-tools.version>5.2.4</graphql-java-tools.version>
         <graphql-spring.version>5.0.2</graphql-spring.version>
+        <camunda-bpm-version>3.4.4</camunda-bpm-version>
 
     </properties>
 
@@ -331,6 +332,19 @@
                 <groupId>com.graphql-java</groupId>
                 <artifactId>graphql-java-tools</artifactId>
                 <version>${graphql-java-tools.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.camunda.bpm.springboot/camunda-bpm-spring-boot-starter-webapp -->
+            <dependency>
+                <groupId>org.camunda.bpm.springboot</groupId>
+                <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
+                <version>${camunda-bpm-version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.camunda.bpm.springboot/camunda-bpm-spring-boot-starter-rest -->
+            <dependency>
+                <groupId>org.camunda.bpm.springboot</groupId>
+                <artifactId>camunda-bpm-spring-boot-starter-rest</artifactId>
+                <version>${camunda-bpm-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
