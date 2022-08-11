@@ -54,7 +54,7 @@ public class Result extends HashMap<String, Object> implements Serializable {
                                  final Object data) {
         String msgTemp = getMsg(msg, IS_SUCCESS);
         Integer codeTemp = Optional.ofNullable(code).orElse(CODE_SUCCESS);
-        return new Result(code, msg, data);
+        return new Result(codeTemp, msgTemp, data);
     }
 
     public static Result fail(final Integer code,
@@ -62,7 +62,7 @@ public class Result extends HashMap<String, Object> implements Serializable {
                               final Object data) {
         String msgTemp = getMsg(msg, IS_FAIL);
         Integer codeTemp = Optional.ofNullable(code).orElse(CODE_FAIL);
-        return new Result(code, msg, data);
+        return new Result(codeTemp, msgTemp, data);
     }
 
     /**
