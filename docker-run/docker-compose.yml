@@ -76,31 +76,33 @@ services:
       - 8080:8080
 
   elasticsearch:
-    image: elasticsearch:7.5.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
     container_name: elasticsearch
-    networks:
-      - net-es
     volumes:
-      - D:\Software\docker\elasticsearch\data:/usr/share/elasticsearch/data
+      - D:\Software\docker\elasticsearch\plugins:/usr/share/elasticsearch/plugins
       - D:\Software\docker\elasticsearch\config\elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - cluster.name=${CLUSTER_NAME}
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
     ports:
       - "9200:9200"
       - "9300:9300"
 
-  elasticsearch-head:
-    image: mobz/elasticsearch-head:5
-    container_name: elasticsearch-head
-    environment:
-      TZ: 'Asia/Shanghai'
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
+    depends_on:
+      - elasticsearch
     ports:
-      - '9100:9100'
-    networks:
-      - net-es
-
-networks:
-  net-es:
-    external: false
+      - "5601:5601"
+#    volumes:
+#      - D:\Software\docker\kibana\config\kibana.yml:/usr/share/kibana/config/kibana.yml
+#      - D:\Software\docker\kibana\data:/usr/share/kibana/data
+#      - D:\Software\docker\kibana\logs:/usr/share/kibana/logs
+#    environment:
+#      - ELASTICSEARCH_HOSTS=https://elasticsearch:9200/
+#      - ELASTICSEARCH_USERNAME=kibana_system
+#      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
