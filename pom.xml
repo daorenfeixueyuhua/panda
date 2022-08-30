@@ -51,6 +51,7 @@
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <mybatis-plus.version>3.5.1</mybatis-plus.version>
         <javax.servlet-api.version>3.0.1</javax.servlet-api.version>
+        <slf4jVersion>1.7.25</slf4jVersion>
     </properties>
 
     <dependencyManagement>
@@ -473,6 +474,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-webflux</artifactId>
                 <version>${spring-boot-dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4jVersion}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
