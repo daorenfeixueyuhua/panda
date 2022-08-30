@@ -50,4 +50,9 @@ public class HelloController {
         System.out.println(objectMapper.writeValueAsString(LocalDateTime.now()));
         return 1;
     }
+
+    @GetMapping("/openApi/hello")
+    public String openHello(){
+        return "Hello";
+    }
 }

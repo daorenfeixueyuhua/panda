@@ -1,10 +1,14 @@
 package com.daoren.user.controller;
 
 
+import com.daoren.user.model.entity.Permission;
+import com.daoren.user.model.entity.Role;
 import com.daoren.user.model.entity.User;
 import com.daoren.user.service.UserService;
 import com.daoren.web.annotation.ResponseResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -50,5 +54,43 @@ public class UserController {
     @GetMapping("/{id}")
     public User one(@PathVariable String id) {
         return baseService.getById(id);
+    }
+
+    /**
+     * 通过用户名查询用户
+     * @author peng_da
+     * @since 2022/8/17 17:13
+     * @param userName : 用户名
+     * @return com.daoren.user.model.entity.User
+     */
+    @ResponseResult
+    @GetMapping("/userName/{userName}")
+    public User getUserByUserName(@PathVariable String userName){
+        return baseService.getUserByUserName(userName);
+    }
+    /**
+     * 通过用户Id查询权限
+     * @author peng_da
+     * @since 2022/8/17 17:34
+     * @param userId : userId
+     * @return java.util.List<com.daoren.user.model.entity.Permission>
+     */
+    @ResponseResult
+    @GetMapping("/{userId}/permissions")
+    public List<Permission> getPermissionByUserId(@PathVariable String userId){
+        return baseService.getPermissionListByUserId(userId);
+    }
+
+    /**
+     * 通过用户Id查询角色
+     * @author peng_da
+     * @since 2022/8/18 10:09
+     * @param userId : userId
+     * @return java.util.List<com.daoren.user.model.entity.Role>
+     */
+    @ResponseResult
+    @GetMapping("/{userId}/roles")
+    public List<Role> getRolesByUserId(@PathVariable("userId")String userId){
+        return baseService.findRolesByUserId(userId);
     }
 }

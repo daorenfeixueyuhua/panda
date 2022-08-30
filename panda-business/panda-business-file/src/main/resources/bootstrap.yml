@@ -9,7 +9,7 @@ project:
 spring:
   application:
     # 应用名称
-    name: panda-buiness-file
+    name: panda-business-file
   main:
     allow-bean-definition-overriding: true
   profiles:

@@ -30,5 +30,13 @@
         sys_enable,
         code, description, url
     </sql>
+    <select id="findByUserId" resultMap="BaseResultMap">
+        select sp.* from sys_user u
+                             left join sys_user_role sur on u.id = sur.user_id
+                             left join sys_role sr on sur.role_id = sr.id
+                             left join sys_role_permission srp on sr.id = srp.role_id
+                             left join sys_permission sp on srp.permission_id = sp.id
+        where u.id = #{userId}
+    </select>
 
 </mapper>

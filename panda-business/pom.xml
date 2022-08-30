@@ -19,6 +19,9 @@
         <module>panda-business-acm</module>
         <module>panda-business-graphql</module>
         <module>panda-business-camunda</module>
+        <module>panda-business-es</module>
+        <module>panda-business-dbagent</module>
+        <module>panda-business-hello</module>
     </modules>
 
     <properties>

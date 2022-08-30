@@ -30,5 +30,38 @@
         sys_enable,
         name, birth, id_card
     </sql>
+    <update id="updateBatch" parameterType="list">
+        update sys_person
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="name =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.name !=null and item.name != ''">
+                        when id=#{item.id} then #{item.name}
+                    </if>
+                    <if test="item.name == null or item.name == ''">
+                        when id=#{item.id} then sys_person.name
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="ID_CARD =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.idCard !=null and item.idCard != ''">
+                        when id=#{item.id} then #{item.idCard}
+                    </if>
+                    <if test="item.idCard == null or item.idCard == ''">
+                        when id=#{item.id} then sys_person.birth
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <select id="getAllById" resultType="com.daoren.test.model.entity.Person">
+        select <include refid="Base_Column_List"/>
+        from sys_person where id = #{id} ${dataScopeSql}
+    </select>
 
 </mapper>

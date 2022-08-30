@@ -1,3 +1,13 @@
 
 ###
 GET {{host_user}}/users/1
+
+
+###
+GET {{host_user}}/users/userName/panda
+
+###
+GET {{host_user}}/users/1/permissions
+
+###
+GET {{host_user}}/users/1/roles

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 
 import javax.annotation.Resource;
@@ -27,6 +26,8 @@ import java.time.LocalDateTime;
  */
 @Configuration
 public class JacksonConfig {
+    /** ObjectMapper Bean Name */
+    public static final String OBJECT_MAPPER_NAME = "pandaObjectMapper";
     @Resource
     private DateFormat dateFormat;
     @Resource
@@ -53,8 +54,7 @@ public class JacksonConfig {
      * @since 2022/2/17 17:16
      */
     @Scope("prototype")
-    @Bean
-    @Primary
+    @Bean(OBJECT_MAPPER_NAME)
     public ObjectMapper objectMapper() {
         final ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);

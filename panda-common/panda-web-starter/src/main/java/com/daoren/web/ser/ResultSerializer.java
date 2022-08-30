@@ -1,6 +1,6 @@
 package com.daoren.web.ser;
 
-import com.daoren.web.entity.Result;
+import com.daoren.common.entity.Result;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;

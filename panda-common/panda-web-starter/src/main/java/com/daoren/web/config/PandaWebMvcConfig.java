@@ -1,6 +1,6 @@
 package com.daoren.web.config;
 
-import com.daoren.web.entity.Result;
+import com.daoren.common.entity.Result;
 import com.daoren.web.ser.ResultSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;

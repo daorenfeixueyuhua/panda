@@ -94,5 +94,9 @@
             <groupId>com.daoren</groupId>
             <artifactId>panda-log-stater</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.daoren</groupId>
+            <artifactId>panda-oauth-client</artifactId>
+        </dependency>
     </dependencies>
 </project>

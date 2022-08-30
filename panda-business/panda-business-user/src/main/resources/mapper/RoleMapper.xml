@@ -28,5 +28,11 @@
         sys_enable,
         name
     </sql>
+    <select id="findRoleByUserId" resultType="com.daoren.user.model.entity.Role">
+        select sr.* from sys_user u
+                             left join sys_user_role sur on u.id = sur.user_id
+                             left join sys_role sr on sur.role_id = sr.id
+        where u.id = #{userId}
+    </select>
 
 </mapper>

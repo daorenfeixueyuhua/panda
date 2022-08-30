@@ -21,17 +21,41 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
+
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.daoren</groupId>-->
+<!--            <artifactId>panda-oauth-client</artifactId>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>com.daoren</groupId>
+            <artifactId>panda-user-service-api</artifactId>
         </dependency>
         <dependency>
             <groupId>com.daoren</groupId>
             <artifactId>panda-web-starter</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.daoren</groupId>
             <artifactId>panda-mybatis-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
         <dependency>
@@ -59,6 +83,10 @@
         <dependency>
             <artifactId>snakeyaml</artifactId>
             <groupId>org.yaml</groupId>
+        </dependency>
+        <dependency>
+            <groupId>com.daoren</groupId>
+            <artifactId>panda-oauth-core</artifactId>
         </dependency>
     </dependencies>
 

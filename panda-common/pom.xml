@@ -20,6 +20,10 @@
         <module>panda-common-starter</module>
         <module>panda-redis-starter</module>
         <module>panda-graphql-starter</module>
+        <module>panda-dbagent-core</module>
+        <module>panda-user-core</module>
+        <module>panda-oauth-client</module>
+        <module>panda-oauth-core</module>
     </modules>
 
     <properties>

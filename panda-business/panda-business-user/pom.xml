@@ -98,6 +98,10 @@
             <groupId>com.daoren</groupId>
             <artifactId>panda-log-stater</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.daoren</groupId>
+            <artifactId>panda-user-core</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

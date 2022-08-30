@@ -1,7 +1,7 @@
 package com.daoren.web.handler;
 
+import com.daoren.common.entity.Result;
 import com.daoren.web.annotation.ResponseResult;
-import com.daoren.web.entity.Result;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;

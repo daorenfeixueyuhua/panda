@@ -5,9 +5,27 @@ GET {{host_test}}/hello
 
 ###
 POST {{host_test}}/person/list
+Authorization: bearer 329608b7-a7bc-42d6-9d8c-4b3ac0b1a3bb
 Content-Type: application/x-www-form-urlencoded
 
 name=exception1
 
 ###
 GET {{host_test}}/person/01641455e23682721547dbce5662c2ed_
+
+###
+GET {{host_test}}/openApi/hello
+
+###
+POST http://127.0.0.1:9091/dbagent/execute
+Content-Type: application/json
+
+{
+  "tip": "127.0.0.1",
+  "db": "api",
+  "code": "c2VsZWN0ICogZnJvbSBzeXNfcGVyc29uIHdoZXJlIG5hbWUgPSAje25hbWV9==wO",
+  "type": "SELECT",
+  "params": {
+    "name": "234"
+  }
+}

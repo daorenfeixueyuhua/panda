@@ -3,7 +3,6 @@ package com.daoren.web.config;
 
 import com.daoren.web.handler.ValidationInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -13,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @date 2022/5/27 11:14
  * @since :
  */
-@Configuration
+//@Configuration
 public class PandaWebMvcConfigurerAdapter implements WebMvcConfigurer {
     @Autowired
     private ValidationInterceptor validationInterceptor;

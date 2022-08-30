@@ -2,5 +2,5 @@ POST http://localhost:4000
 Content-Type: application/json
 
 {
-  "query": "query {books{title, author}}"
+  "query": "query {books{title, author} numberSix}"
 }

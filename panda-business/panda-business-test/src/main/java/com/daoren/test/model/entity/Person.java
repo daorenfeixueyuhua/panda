@@ -4,8 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.daoren.mybatis.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -17,8 +16,11 @@ import java.time.LocalDateTime;
  * @author daoren
  * @since 2022-07-20
  */
+@Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @TableName("sys_person")
 @ApiModel(value = "Person对象", description = "个人信息表")
 public class Person extends BaseEntity {

@@ -6,7 +6,7 @@ server:
 spring:
   application:
     # 应用名称
-    name: panda-buiness-auth
+    name: panda-business-auth
   main:
     allow-bean-definition-overriding: true
   profiles:

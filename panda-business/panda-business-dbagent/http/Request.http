@@ -1,0 +1,73 @@
+POST http://127.0.0.1:9097/preProxy
+Content-Type: application/json
+
+{
+  "tip": "127.0.0.1",
+  "db": "api",
+  "code": "c2VsZWN0ICogZnJvbSBzeXNfcGVyc29uIHdoZXJlIG5hbWUgPSAje25hbWV9==wO",
+  "type": "SELECT",
+  "params": {
+    "name": "234"
+  }
+}
+
+###
+POST http://127.0.0.1:9097/preProxy/list
+Content-Type: application/json
+
+[
+  {
+    "tip": "127.0.0.1",
+    "db": "api",
+    "code": "c2VsZWN0ICogZnJvbSBzeXNfcGVyc29uIHdoZXJlIG5hbWUgPSAje25hbWV9==wO",
+    "type": "SELECT",
+    "params": {
+      "name": "234"
+    }
+  },
+  {
+    "tip": "127.0.0.1",
+    "db": "api",
+    "code": "c2VsZWN0ICogZnJvbSBzeXNfcGVyc29uIHdoZXJlIG5hbWUgPSAje25hbWV9==wO",
+    "type": "SELECT",
+    "params": {
+      "name": "234"
+    }
+  },
+  {
+    "tip": "127.0.0.1",
+    "db": "api",
+    "code": "c2VsZWN0ICogZnJvbSBzeXNfcGVyc29uIHdoZXJlIG5hbWUgPSAje25hbWV9==wO",
+    "type": "SELECT",
+    "params": {
+      "name": "234"
+    }
+  },
+  {
+    "tip": "127.0.0.1",
+    "db": "api",
+    "code": "c2VsZWN0ICogZnJvbSBzeXNfcGVyc29uIHdoZXJlIG5hbWUgPSAje25hbWV9==wO",
+    "type": "SELECT",
+    "params": {
+      "name": "234"
+    }
+  },
+  {
+    "tip": "127.0.0.1",
+    "db": "api",
+    "code": "c2VsZWN0ICogZnJvbSBzeXNfcGVyc29uIHdoZXJlIG5hbWUgPSAje25hbWV9==wO",
+    "type": "SELECT",
+    "params": {
+      "name": "234"
+    }
+  },
+  {
+    "tip": "127.0.0.1",
+    "db": "api",
+    "code": "c2VsZWN0ICogZnJvbSBzeXNfcGVyc29uIHdoZXJlIG5hbWUgPSAje25hbWV9==wO",
+    "type": "SELECT",
+    "params": {
+      "name": "234"
+    }
+  }
+]
