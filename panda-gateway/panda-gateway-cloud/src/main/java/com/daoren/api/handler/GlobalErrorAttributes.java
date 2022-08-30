@@ -1,6 +1,6 @@
 package com.daoren.api.handler;
 
-import com.daoren.common.entity.Result;
+import com.daoren.common.base.entity.Result;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.reactive.error.DefaultErrorAttributes;
 import org.springframework.http.HttpStatus;

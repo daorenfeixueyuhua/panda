@@ -1,7 +1,7 @@
 package com.daoren.dbagent.service;
 
-import com.daoren.common.constant.ServiceNameConstants;
-import com.daoren.common.entity.R;
+import com.daoren.common.base.constant.ServiceNameConstants;
+import com.daoren.common.base.entity.R;
 import com.daoren.dbagent.factory.RemoteUserFallbackFactory;
 import com.daoren.user.model.entity.Permission;
 import com.daoren.user.model.entity.Role;
@@ -40,10 +40,11 @@ public interface RemoteUserService {
 
     /**
      * 通过用户Id查询角色
+     *
+     * @param userId : userId
+     * @return com.daoren.common.base.entity.R<java.util.List < com.daoren.user.model.entity.Role>>
      * @author peng_da
      * @since 2022/8/18 10:09
-     * @param userId : userId
-     * @return com.daoren.common.entity.R<java.util.List<com.daoren.user.model.entity.Role>>
      */
     @GetMapping(value = "/users/{userId}/roles")
     R<List<Role>> getRolesByUserId(@PathVariable("userId") String userId);

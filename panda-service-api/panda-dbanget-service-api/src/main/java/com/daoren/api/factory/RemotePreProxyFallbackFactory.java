@@ -1,7 +1,7 @@
 package com.daoren.api.factory;
 
 import com.daoren.api.service.RemotePreProxyService;
-import com.daoren.common.entity.R;
+import com.daoren.common.base.entity.R;
 import com.daoren.dbagent.model.dto.RequestParams;
 import com.daoren.dbagent.model.vo.DbResult;
 import lombok.extern.slf4j.Slf4j;

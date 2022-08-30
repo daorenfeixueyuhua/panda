@@ -1,4 +1,4 @@
-package com.daoren.common.context;
+package com.daoren.common.base.context;
 /**
  * todo 但是需要考虑销毁问题
  * 用户信息上下文信息

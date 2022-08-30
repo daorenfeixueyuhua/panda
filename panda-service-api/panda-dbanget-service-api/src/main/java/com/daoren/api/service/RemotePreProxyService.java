@@ -1,8 +1,8 @@
 package com.daoren.api.service;
 
 import com.daoren.api.factory.RemotePreProxyFallbackFactory;
-import com.daoren.common.constant.ServiceNameConstants;
-import com.daoren.common.entity.R;
+import com.daoren.common.base.constant.ServiceNameConstants;
+import com.daoren.common.base.entity.R;
 import com.daoren.dbagent.model.dto.RequestParams;
 import com.daoren.dbagent.model.vo.DbResult;
 import org.springframework.cloud.openfeign.FeignClient;

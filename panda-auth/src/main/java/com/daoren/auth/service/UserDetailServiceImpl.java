@@ -1,7 +1,7 @@
 package com.daoren.auth.service;
 
-import com.daoren.common.entity.R;
-import com.daoren.common.entity.Result;
+import com.daoren.common.base.entity.R;
+import com.daoren.common.base.entity.Result;
 import com.daoren.dbagent.service.RemoteUserService;
 import com.daoren.user.model.entity.Role;
 import com.daoren.user.model.entity.User;

@@ -1,6 +1,6 @@
 package com.daoren.dbagent.service.impl;
 
-import com.daoren.common.entity.Result;
+import com.daoren.common.base.entity.Result;
 import com.daoren.dbagent.config.DbContextHolder;
 import com.daoren.dbagent.mapper.PublicMapper;
 import com.daoren.dbagent.model.dto.RequestParams;

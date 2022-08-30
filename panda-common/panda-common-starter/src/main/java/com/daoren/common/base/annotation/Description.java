@@ -1,4 +1,4 @@
-package com.daoren.common.annotation;
+package com.daoren.common.base.annotation;
 
 import java.lang.annotation.*;
 

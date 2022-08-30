@@ -1,4 +1,4 @@
-package com.daoren.common.entity;
+package com.daoren.common.base.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

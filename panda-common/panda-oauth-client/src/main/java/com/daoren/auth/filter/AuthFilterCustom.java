@@ -2,7 +2,7 @@ package com.daoren.auth.filter;
 
 import com.daoren.auth.constant.SecurityConstant;
 import com.daoren.auth.models.JwtTokenInfo;
-import com.daoren.common.context.OpenFeignTokenInfoContext;
+import com.daoren.common.base.context.OpenFeignTokenInfoContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;

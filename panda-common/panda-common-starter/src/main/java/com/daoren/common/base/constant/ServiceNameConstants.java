@@ -1,4 +1,4 @@
-package com.daoren.common.constant;
+package com.daoren.common.base.constant;
 
 /**
  * 服务名常量

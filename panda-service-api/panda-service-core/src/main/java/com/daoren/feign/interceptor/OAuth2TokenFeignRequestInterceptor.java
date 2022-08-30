@@ -1,7 +1,7 @@
 package com.daoren.feign.interceptor;
 
 import com.daoren.auth.constant.SecurityConstant;
-import com.daoren.common.context.OpenFeignTokenInfoContext;
+import com.daoren.common.base.context.OpenFeignTokenInfoContext;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 

@@ -1,6 +1,6 @@
 package com.daoren.web.handler;
 
-import com.daoren.common.entity.Result;
+import com.daoren.common.base.entity.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
      * @param ex       : 异常 {@link RuntimeException}
      * @param request  : 请求
      * @param response : 响应
-     * @return com.daoren.common.entity.Result
+     * @return com.daoren.common.base.entity.Result
      * @author peng_da
      * @since 2022/5/27 10:29
      */
@@ -51,7 +51,7 @@ public class GlobalExceptionHandler {
      * @param ex       : 异常 {@link BindException}
      * @param request  : 请求
      * @param response : 响应
-     * @return com.daoren.common.entity.Result
+     * @return com.daoren.common.base.entity.Result
      * @author peng_da
      * @since 2022/5/27 10:30
      */
@@ -76,7 +76,7 @@ public class GlobalExceptionHandler {
      * @param ex       : 异常 {@link ConstraintViolationException}
      * @param request  : 请求
      * @param response : 响应
-     * @return com.daoren.common.entity.Result
+     * @return com.daoren.common.base.entity.Result
      * @author peng_da
      * @since 2022/5/27 11:05
      */
