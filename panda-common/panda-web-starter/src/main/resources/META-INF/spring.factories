@@ -5,4 +5,5 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.daoren.web.config.FilterConfig, \
   com.daoren.web.handler.ApiVersionRequestMappingHandlerMapping,\
   com.daoren.web.handler.GlobalExceptionHandler,\
-  com.daoren.web.ser.ResultSerializer
+  com.daoren.web.ser.ResultSerializer,\
+  com.daoren.web.handler.RepeatSubmitHandler
