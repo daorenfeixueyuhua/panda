@@ -1,0 +1,37 @@
+# Tomcat
+server:
+  port: 9088
+
+project:
+  #  项目绝对路径
+  path: D:\Projects\Custom\panda\panda-business\panda-business-dynamic
+  # 项目所在包名
+  package: com.daoren.dynamic
+
+mybatis-plus:
+  gen:
+    parent: com.daoren.dynamic
+
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: panda-business-dynamic
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: dev
+  # 环境配置
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: http://nacos:8848
+      config:
+        # 配置中心地址
+        server-addr: http://nacos:8848
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
