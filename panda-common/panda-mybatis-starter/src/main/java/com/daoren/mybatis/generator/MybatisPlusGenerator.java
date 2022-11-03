@@ -1,6 +1,8 @@
 package com.daoren.mybatis.generator;
 
 
+import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties;
+import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
@@ -21,12 +23,20 @@ import java.util.Collections;
  */
 public class MybatisPlusGenerator {
     private MybatisPlusGeneratorProperties properties;
+    private DynamicDataSourceProperties dynamicDataSourceProperties;
 
     public void setProperties(MybatisPlusGeneratorProperties properties) {
         this.properties = properties;
     }
 
+    public void setDynamicDataSourceProperties(DynamicDataSourceProperties dynamicDataSourceProperties) {
+        this.dynamicDataSourceProperties = dynamicDataSourceProperties;
+    }
+
     public void run(final String[] include) {
+
+        DynamicDataSourceContextHolder.push(dynamicDataSourceProperties.getPrimary());
+
         FastAutoGenerator.create(properties.getUrl(), properties.getUsername(), properties.getPassword())
                 .globalConfig(builder -> {
                     builder.author(properties.getAuthor()) // 设置作者

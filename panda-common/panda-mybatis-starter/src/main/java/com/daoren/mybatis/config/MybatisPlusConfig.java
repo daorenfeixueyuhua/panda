@@ -1,5 +1,6 @@
 package com.daoren.mybatis.config;
 
+import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.incrementer.IKeyGenerator;
 import com.baomidou.mybatisplus.extension.incrementer.H2KeyGenerator;
@@ -26,9 +27,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties({MybatisPlusPageProperties.class, MybatisPlusGeneratorProperties.class})
 public class MybatisPlusConfig {
+    private MybatisPlusGeneratorProperties generatorProperties;
+    private DynamicDataSourceProperties dynamicDataSourceProperties;
 
     @Autowired
-    private MybatisPlusGeneratorProperties generatorProperties;
+    public void setGeneratorProperties(MybatisPlusGeneratorProperties generatorProperties) {
+        this.generatorProperties = generatorProperties;
+    }
+
+    @Autowired
+    public void setDynamicDataSourceProperties(DynamicDataSourceProperties dynamicDataSourceProperties) {
+        this.dynamicDataSourceProperties = dynamicDataSourceProperties;
+    }
 
     @Bean("mybatisPlusKeyGenerator")
     public IKeyGenerator keyGenerator() {
@@ -46,6 +56,7 @@ public class MybatisPlusConfig {
     public MybatisPlusGenerator mybatisPlusGenerator() {
         final MybatisPlusGenerator generator = new MybatisPlusGenerator();
         generator.setProperties(generatorProperties);
+        generator.setDynamicDataSourceProperties(dynamicDataSourceProperties);
         return generator;
     }
 
