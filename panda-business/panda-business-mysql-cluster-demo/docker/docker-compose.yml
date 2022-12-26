@@ -1,0 +1,46 @@
+version: "3.1"
+
+services:
+  mysql_master:
+    image: mysql
+    container_name: mysql_master
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+    ports:
+      - "3307:3306"
+    volumes:
+      - D:\Software\docker\mysql-cluster\master\data:/var/lib/mysql
+      - D:\Software\docker\mysql-cluster\master\conf\mysql.conf:/etc/mysql/mysql.conf.d/mysql.conf
+      - D:\Software\docker\mysql-cluster\master\conf\my.cnf:/etc/mysql/my.cnf
+      - D:\Software\docker\mysql-cluster\master\log:/var/log/mysql
+      - D:\Software\docker\mysql-cluster\master\mysql-files:/var/lib/mysql-files/
+  mysql_slave1:
+    image: mysql
+    container_name: mysql_slave1
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+    ports:
+      - "3308:3306"
+    volumes:
+      - D:\Software\docker\mysql-cluster\mysql_slave1\data:/var/lib/mysql
+      - D:\Software\docker\mysql-cluster\mysql_slave1\conf\mysql.conf:/etc/mysql/mysql.conf.d/mysql.conf
+      - D:\Software\docker\mysql-cluster\mysql_slave1\conf\my.cnf:/etc/mysql/my.cnf
+      - D:\Software\docker\mysql-cluster\mysql_slave1\log:/var/log/mysql
+      - D:\Software\docker\mysql-cluster\mysql_slave1\mysql-files:/var/lib/mysql-files/
+    links:
+      - mysql_master
+  mysql_slave2:
+    image: mysql
+    container_name: mysql_slave2
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+    ports:
+      - "3309:3306"
+    volumes:
+      - D:\Software\docker\mysql-cluster\mysql_slave2\data:/var/lib/mysql
+      - D:\Software\docker\mysql-cluster\mysql_slave2\conf\mysql.conf:/etc/mysql/mysql.conf.d/mysql.conf
+      - D:\Software\docker\mysql-cluster\mysql_slave2\conf\my.cnf:/etc/mysql/my.cnf
+      - D:\Software\docker\mysql-cluster\mysql_slave2\log:/var/log/mysql
+      - D:\Software\docker\mysql-cluster\mysql_slave2\mysql-files:/var/lib/mysql-files/
+    links:
+      - mysql_master

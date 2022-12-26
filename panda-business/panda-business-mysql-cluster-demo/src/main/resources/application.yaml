@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://mysql_master:3307/cluster_demo
+          username: root
+          password: 123456
+        slave_1:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://mysql_slave1:3308/cluster_demo
+          username: root
+          password: 123456
+#        slave_2:
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          url: jdbc:mysql://mysql_slave2:3309/cluster_demo
+#          username: root
+#          password: 123456
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  port: 9084
