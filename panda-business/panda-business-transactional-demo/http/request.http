@@ -1,0 +1,17 @@
+
+POST http://localhost:9083/persons/
+Content-Type: application/json
+
+{
+"name": "ex"
+}
+
+### 事务传播设置
+GET http://localhost:9083/persons/propagation
+
+### 执行A
+GET http://localhost:9083/persons/methods/A
+### 执行B
+GET http://localhost:9083/persons/methods/B
+### 执行A|B
+GET http://localhost:9083/persons/methods/A_B
