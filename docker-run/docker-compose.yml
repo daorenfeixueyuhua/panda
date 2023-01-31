@@ -4,7 +4,19 @@ version: "3.1"
 # 给zk集群配置一个网络，网络名为zk-net
 networks:
   zk-net:
-    name: zk-net
+  #    name: zk-net
+
+  app-net:
+  #    name: app-net
+  redis-network:
+    #    name: redis-network
+    ## 使用网桥
+    driver: bridge
+    ipam:
+      driver: default
+      ## 指定网段，需要注意不能与已有的 docker network 相冲突
+      config:
+        - subnet: 172.27.0.0/16
 
 
 services:
@@ -19,8 +31,22 @@ services:
     volumes:
       - D:\Software\docker\mysql\data:/var/lib/mysql
       - D:\Software\docker\mysql\conf\mysql.conf:/etc/mysql/mysql.conf.d/mysql.conf
+      - D:\Software\docker\mysql\conf\my.cnf:/etc/mysql/my.cnf
       - D:\Software\docker\mysql\log:/var/log/mysql
       - D:\Software\docker\mysql\mysql-files:/var/lib/mysql-files/
+    networks:
+      - app-net
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+    ports:
+      - '5432:5432'
+    volumes:
+      - D:\Software\docker\postgresql\data:/var/lib/postgresql/data
 
   nacos:
     image: nacos/nacos-server
@@ -54,6 +80,13 @@ services:
       - mysql
     restart: always
 
+  # sentinel-service
+  sentinel-dashboard:
+    container_name: sentinel-dashboard
+    image: sentinel-dashboard:1.8.6
+    ports:
+      - 8082:8080
+
   #redis容器
   redis:
     #定义主机名
@@ -62,7 +95,7 @@ services:
     image: redis
     #容器的映射端口
     ports:
-      - 6380:6379
+      - 6379:6379
     command: redis-server /etc/conf/redis.conf
     #定义挂载点
     volumes:
@@ -77,10 +110,45 @@ services:
   # 网关
   api:
     image: panda-gateway-cloud
-    network_mode: host
     container_name: api
     ports:
       - 8080:8080
+    networks:
+      - app-net
+  # 权限认证
+  auth:
+    image: panda-auth
+    container_name: auth
+    ports:
+      - "8081:8081"
+    networks:
+      - app-net
+  # test
+  test:
+    image: panda-business-test
+    container_name: test
+    ports:
+      - "9091:9091"
+    networks:
+      - app-net
+  # 用户认证
+  user:
+    image: panda-business-user
+    container_name: user
+    ports:
+      - "9092:9092"
+    networks:
+      - app-net
+  # 用户认证
+  dbagnet:
+    image: panda-business-dbagent
+    container_name: dbagnet
+    ports:
+      - "9097:9097"
+    networks:
+      - app-net
+
+
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
@@ -183,3 +251,115 @@ services:
       - D:\Software\IDE\apache-zookeeper-3.8.0\conf\zoo_sample.cfg:/conf/zoo.cfg
     networks:
       - zk-net
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - D:\Software\docker\mongodb\database:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+
+  dm8:
+    image: ccb727ce9dce
+    container_name: dm8
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - '5236:5236'
+    volumes:
+      - D:\Software\docker\dm8\data:/opt/dmdbms/data
+    networks:
+      - app-net
+
+  # nginx cluster test
+  nginx-demo1:
+    image: panda-business-nginx-demo
+    container_name: nginx-demo1
+    ports:
+      - 8081:9085
+  nginx-demo2:
+    image: panda-business-nginx-demo
+    container_name: nginx-demo2
+    ports:
+      - 8082:9085
+
+  # rabbitmq
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+
+
+  # canal-server status: Failed
+  canal-server:
+    image: canal/canal-server
+    container_name: canal-server
+    network_mode: host
+    ports:
+      - '11110:11110'
+      - '11111:11111'
+      - '11112:11112'
+      - '9100:9100'
+    environment:
+      - canal.auto.scan=false
+      - canal.destinations=test
+      - canal.instance.master.address=mysql:3306
+      - canal.instance.dbUsername=canal
+      - canal.instance.dbPassword=canal
+      - canal.instance.connectionCharset=UTF-8
+      - canal.instance.tsdb.enable=true
+      - anal.instance.gtidon=false
+    volumes:
+      - D:\Software\docker\canal\conf\canal.properties:/home/admin/canal-server/conf/canal.properties
+      - D:\Software\docker\canal\logs:/home/admin/canal-server/logs/
+
+
+  gitlab:
+    # u&p:root:3.1415926535
+    image: gitlab/gitlab-ce:latest
+    container_name: "gitlab"
+    #    restart: always
+    environment:
+      TZ: "Asia/Shanghai"
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails["time_zone"] = "Asia/Shanghai"
+        gitlab_rails["gitlab_shell_ssh_port"] = 10022
+        nginx["listen_port"] = 80
+    ports:
+      - "8083:80"
+      - "10022:22"
+    volumes:
+      - D:\Software\docker\gitlab\config:/etc/gitlab
+      - D:\Software\docker\gitlab\data:/var/log/gitlab
+      - D:\Software\docker\gitlab\logs:/var/opt/gitlab
+  # jenkins
+  jenkins:
+    # peng_da
+    # 3.1415926535
+    # daorenfeixueyuhua@qq.com
+    image: jenkins/jenkins
+    ports:
+      - '8084:8080'
+    volumes:
+      - D:\Software\docker\jenkins:/var/jenkins_home
+
+  nexus:
+    # admin
+    # 3.1415926535
+    image: sonatype/nexus3
+    container_name: nexus
+    hostname: nexus
+    ports:
+      - '8085:8081'
+      - '8086:8082'
+    volumes:
+      - D:\Software\docker\nexus:/nexus-data
