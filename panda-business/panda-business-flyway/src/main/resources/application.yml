@@ -1,0 +1,17 @@
+server:
+  port: 9079
+
+spring:
+  datasource:
+    dynamic:
+      primary: business
+      strict: false
+      datasource:
+        business:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://mysql:3306/ALGORTHIM_DATABASE
+          username: root
+          password: 123456
+
+  flyway:
+    baseline-on-migrate: true
