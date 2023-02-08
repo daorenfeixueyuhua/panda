@@ -12,10 +12,39 @@
     <artifactId>panda-business-dubbo-hello-consumer</artifactId>
 
     <properties>
+        <maven.install.skip>true</maven.install.skip>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <dependencies>
+
+        <dependency>
+            <groupId>com.daoren</groupId>
+            <artifactId>panda-business-dubbo-api</artifactId>
+        </dependency>
+
+        <!-- dubbo -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-dependencies-zookeeper</artifactId>
+            <type>pom</type>
+        </dependency>
+
+        <!-- dubbo starter -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- spring starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -23,28 +52,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
-        <!--引入接口项目jar包-->
         <dependency>
-            <groupId>com.daoren</groupId>
-            <artifactId>panda-business-dubbo-api</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <!--引入dubbo的依赖-->
         <dependency>
-            <groupId>com.alibaba.spring.boot</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
-        </dependency>
-        <!-- 引入zookeeper的依赖 -->
-        <dependency>
-            <groupId>com.github.adyliu</groupId>
-            <artifactId>zkclient</artifactId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.github.sgroschupf</groupId>
-            <artifactId>zkclient</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
     </dependencies>
 

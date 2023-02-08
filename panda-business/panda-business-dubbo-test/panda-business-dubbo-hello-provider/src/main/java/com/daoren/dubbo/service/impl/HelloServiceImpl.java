@@ -1,16 +1,14 @@
 package com.daoren.dubbo.service.impl;
 
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.daoren.dubbo.api.HelloService;
-import org.springframework.stereotype.Component;
+import org.apache.dubbo.config.annotation.DubboService;
 
 /**
  * @author peng_da
  * @date 2022/10/31 17:36
  */
-@Component
-@Service
+@DubboService
 public class HelloServiceImpl implements HelloService {
     /**
      * say hello
