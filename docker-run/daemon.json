@@ -1,9 +1,4 @@
 {
-  "registry-mirrors": [
-    "https://registry.docker-cn.com",
-    "http://hub-mirror.c.163.com",
-    "https://kfwkfulq.mirror.aliyuncs.com"
-  ],
   "builder": {
     "gc": {
       "defaultKeepStorage": "20GB",
@@ -13,5 +8,10 @@
   "experimental": false,
   "features": {
     "buildkit": true
-  }
+  },
+  "registry-mirrors": [
+    "https://registry.docker-cn.com",
+    "http://hub-mirror.c.163.com",
+    "https://kfwkfulq.mirror.aliyuncs.com"
+  ]
 }

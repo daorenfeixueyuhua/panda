@@ -363,3 +363,72 @@ services:
       - '8086:8082'
     volumes:
       - D:\Software\docker\nexus:/nexus-data
+
+
+  yapi-web:
+    image: jayfong/yapi:latest
+    container_name: yapi-web
+    ports:
+      - '3000:3000'
+    #    volumes:
+    #      - D:\Software\docker\yapi\conf\config.json:/yapi/config.json
+    environment:
+      - YAPI_ADMIN_ACCOUNT=daorenfeixueyuhua@gmail.com
+      - YAPI_ADMIN_PASSWORD=adm1n
+      - YAPI_CLOSE_REGISTER=true
+      - YAPI_DB_SERVERNAME=mongodb
+      - YAPI_DB_PORT=27017
+      - YAPI_DB_DATABASE=yapi
+      - YAPI_DB_USER=yapi
+      - YAPI_DB_PASS=yapi
+      - YAPI_MAIL_ENABLE=false
+      - YAPI_LDAP_LOGIN_ENABLE=false
+      - YAPI_PLUGINS=[]
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+    restart: unless-stopped
+
+
+
+  namesrv:
+    image: apacherocketmq/rocketmq:latest
+    container_name: rocketmq-namesrv
+    ports:
+      - '9876:9876'
+    environment:
+      - JAVA_OPT_EXT=-server -Xms256m -Xmx256m -Xmn256m
+    volumes:
+      - D:\Software\docker\rocketmq\data\namesrv\logs:/root/logs
+    command: sh mqnamesrv
+
+  #Service for broker
+  broker:
+    image: apacherocketmq/rocketmq:latest
+    container_name: rocketmq-broker
+    links:
+      - namesrv
+    depends_on:
+      - namesrv
+    ports:
+      - '10909:10909'
+      - '10911:10911'
+      - '10912:10912'
+    environment:
+      - NAMESRV_ADDR=namesrv:9876
+      - JAVA_OPT_EXT=-server -Xms256m -Xmx256m -Xmn128m
+    volumes:
+      - D:\Software\docker\rocketmq\data\broker\logs:/home/rocketmq/logs
+      - D:\Software\docker\rocketmq\data\broker\store:/home/rocketmq/store
+      - D:\Software\docker\rocketmq\conf\broker.conf:/home/rocketmq/conf/broker.conf
+    # /store 目录可能会因为权限导致无法启动
+    command: sh mqbroker -c /home/rocketmq/conf/broker.conf
+
+  rocketmq-dashboard:
+    image: apacherocketmq/rocketmq-dashboard:latest
+    container_name: rocketmq-dashboard
+    ports:
+      - '8087:8080'
+    environment:
+      - JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876
