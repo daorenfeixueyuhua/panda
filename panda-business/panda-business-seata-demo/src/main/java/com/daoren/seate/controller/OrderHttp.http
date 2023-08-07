@@ -1,0 +1,6 @@
+
+### 创建订单
+POST http://localhost:9078/order/create
+Content-Type: application/x-www-form-urlencoded
+
+userId=1&productId=1&price=10000

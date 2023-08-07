@@ -1,0 +1,30 @@
+server:
+  port: 9078
+---
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: panda-business-seata-demo  # 应用名
+--- ### 日志配置
+
+logging:
+  file:
+    name: ${user.home}/logs/%{spring.application.name}.log
+
+
+--- ### 注册中心
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:30048
+        namespace: dev
+
+--- ### 配置中心
+spring:
+  cloud:
+    config:
+      server-addr: 127.0.0.1:30048
+      namespace: dev
+      enabled: true
