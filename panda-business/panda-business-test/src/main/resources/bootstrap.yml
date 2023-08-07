@@ -4,7 +4,8 @@ server:
 
 project:
   path: D:\Projects\Custom\panda\panda-business\panda-business-test
-
+  # 项目所在包名
+  package: com.daoren.test
 # Spring
 spring:
   application:
@@ -14,15 +15,17 @@ spring:
     allow-bean-definition-overriding: true
   profiles:
     active: dev
+  flyway:
+    baseline-on-migrate: true
   # 环境配置
   cloud:
     nacos:
       discovery:
         # 服务注册地址
-        server-addr: http://127.0.0.1:8848
+        server-addr: http://nacos:8848
       config:
         # 配置中心地址
-        server-addr: http://127.0.0.1:8848
+        server-addr: http://nacos:8848
         # 配置文件格式
         file-extension: yml
         # 共享配置

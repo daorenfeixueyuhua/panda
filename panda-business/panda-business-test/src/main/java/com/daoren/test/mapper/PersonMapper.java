@@ -21,13 +21,14 @@ public interface PersonMapper extends BaseMapper<Person> {
 
     /**
      * 数据权限测试
-     * @author peng_da
-     * @since 2022/8/16 16:25
+     *
      * @param id : id
      * @return java.util.List<com.daoren.test.model.entity.Person>
+     * @author peng_da
+     * @since 2022/8/16 16:25
      */
     @DataScope
-    List<Person> getAllById(@Param("id") String id);
+    Person getAllById(@Param("id") String id);
 
 
 

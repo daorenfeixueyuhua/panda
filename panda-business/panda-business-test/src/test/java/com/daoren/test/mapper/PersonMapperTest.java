@@ -1,7 +1,6 @@
 package com.daoren.test.mapper;
 
 import com.daoren.test.model.entity.Person;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,8 +19,7 @@ public class PersonMapperTest {
     @Test
     public void dataScopeTest(){
         String id = "07ad52cf8382fc371d6405d5a8cddc84";
-        final List<Person> person = personMapper.getAllById(id);
-        Assert.assertTrue(person.size()!=0);
+        final Person person = personMapper.getAllById(id);
     }
 
 

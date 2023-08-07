@@ -1,5 +1,7 @@
 package com.daoren.test.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.daoren.common.base.context.TokenInfoContext;
 import com.daoren.log.annotation.Log;
 import com.daoren.web.annotation.ApiVersion;
 import com.daoren.web.annotation.ResponseResult;
@@ -52,7 +54,10 @@ public class HelloController {
     }
 
     @GetMapping("/openApi/hello")
-    public String openHello(){
-        return "Hello";
+    @SentinelResource(value = "openHello")
+    public String openHello() {
+        final String tokenInfo = TokenInfoContext.token.get();
+//        throw new BusinessRuntimeException("error");
+        return "hello";
     }
 }

@@ -14,13 +14,12 @@ import com.daoren.test.model.entity.Person;
 public interface PersonService extends IService<Person> {
 
     /**
-     * 从缓存获取数据
+     * 通过id进行查询
      *
-     * @param id :
-     * @return com.daoren.graphsqlql.model.entity.SysPerson
+     * @param id : id
+     * @return com.daoren.test.model.entity.Person
      * @author peng_da
-     * @since 2022/3/10 13:59
+     * @since 2022/12/23 9:42
      */
-    Person cacheOne(String id);
-
+    Person getEntityById(String id);
 }
