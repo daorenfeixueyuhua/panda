@@ -5,9 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 /**
- *
  * @author peng_da
- * @date  2022/12/15 17:49
+ * @date 2023/1/2 13:09
  */
 @SpringBootApplication
 @ServletComponentScan(value = "com.daoren.**")
