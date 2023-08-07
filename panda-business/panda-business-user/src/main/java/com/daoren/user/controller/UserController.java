@@ -1,6 +1,7 @@
 package com.daoren.user.controller;
 
 
+import com.daoren.log.annotation.Log;
 import com.daoren.user.model.entity.Permission;
 import com.daoren.user.model.entity.Role;
 import com.daoren.user.model.entity.User;
@@ -63,6 +64,7 @@ public class UserController {
      * @param userName : 用户名
      * @return com.daoren.user.model.entity.User
      */
+    @Log(title = "用户信息")
     @ResponseResult
     @GetMapping("/userName/{userName}")
     public User getUserByUserName(@PathVariable String userName){

@@ -2,7 +2,6 @@ package com.daoren.auth;
 
 import com.daoren.feign.annotation.EnablePdFeignClients;
 import com.daoren.web.config.FilterConfig;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -16,7 +15,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @EnableDiscoveryClient
 @EnablePdFeignClients
-@MapperScan("com.daoren.**.mapper")
 @SpringBootApplication(exclude = FilterConfig.class)
 public class AuthApplication {
     public static void main(String[] args) {

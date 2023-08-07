@@ -22,11 +22,37 @@
         <module>panda-business-es</module>
         <module>panda-business-dbagent</module>
         <module>panda-business-hello</module>
+        <module>panda-business-hbase</module>
+        <module>panda-business-dubbo-test</module>
+        <module>panda-business-dynamic</module>
+        <module>panda-business-mongodb</module>
+        <module>panda-business-mybatis-demo</module>
+        <module>panda-business-mybatis-spring-demo</module>
+        <module>panda-business-spring-ioc</module>
+        <module>panda-business-spring-security</module>
+        <module>panda-business-spring-boot</module>
+        <module>panda-business-junit-demo</module>
+        <module>panda-business-jetty-demo</module>
+        <module>panda-business-tomcat-demo</module>
+        <module>panda-business-nginx-demo</module>
+        <module>panda-business-mysql-cluster-demo</module>
+        <module>panda-business-transactional-demo</module>
+        <module>panda-business-okhttp-demo</module>
+        <module>panda-business-httpclient-demo</module>
+        <module>panda-business-rabbit-provider</module>
+        <module>panda-business-rabbit-consumer</module>
+        <module>panda-business-easy-rules</module>
+        <module>panda-business-acm/panda-business-drools</module>
+        <module>panda-business-fop</module>
+        <module>panda-business-rocketmq-boot-demo</module>
+        <module>panda-business-seata-demo</module>
+        <module>panda-business-nacos-demo</module>
     </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <mainClass>none</mainClass>
     </properties>
     <build>
         <finalName>${project.name}</finalName>
@@ -81,6 +107,39 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-maven-plugin.version}</version>
+                <configuration>
+                    <mainClass>${mainClass}</mainClass>
+                    <layout>ZIP</layout>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--docker配置-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker-maven-plugin.version}</version>
+                <configuration>
+                    <!--<dockerHost>http://192.168.248.135:2376</dockerHost>-->
+                    <imageName>${project.artifactId}</imageName>
+                    <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>
