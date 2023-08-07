@@ -1,0 +1,7 @@
+---
+name: "ZJSA"
+description: "刑事直接受案"
+priority: 0
+condition: "ajywztdm == 1"
+actions:
+  - "System.out.println(ajywztdm)"
