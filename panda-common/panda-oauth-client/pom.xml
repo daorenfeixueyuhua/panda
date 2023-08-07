@@ -40,7 +40,7 @@
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.security</groupId>-->
 <!--            <artifactId>spring-security-jwt</artifactId>-->
-<!--        </dependency>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-security</artifactId>
@@ -48,6 +48,10 @@
         <dependency>
             <groupId>com.daoren</groupId>
             <artifactId>panda-user-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.daoren</groupId>
+            <artifactId>panda-thread-core</artifactId>
         </dependency>
     </dependencies>
 

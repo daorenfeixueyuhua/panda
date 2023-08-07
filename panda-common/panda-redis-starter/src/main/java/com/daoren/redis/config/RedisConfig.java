@@ -1,5 +1,6 @@
 package com.daoren.redis.config;
 
+import com.daoren.redis.core.RedisLock;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,7 +14,6 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
 import javax.annotation.Resource;
@@ -88,12 +88,13 @@ public class RedisConfig extends CachingConfigurerSupport {
      */
     @Bean
     @SuppressWarnings("rawtypes")
-    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory redisConnectionFactory,
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory,
                                                        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer) {
-        final StringRedisTemplate stringRedisTemplate = new StringRedisTemplate(redisConnectionFactory);
-        stringRedisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
-        stringRedisTemplate.afterPropertiesSet();
-        return stringRedisTemplate;
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
+        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+        redisTemplate.afterPropertiesSet();
+        return redisTemplate;
     }
 
     /**
@@ -111,5 +112,11 @@ public class RedisConfig extends CachingConfigurerSupport {
                 .cacheDefaults(RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(6)))
                 .transactionAware()
                 .build();
+    }
+
+    @Bean
+    public RedisLock redisLock() {
+
+        return null;
     }
 }

@@ -2,6 +2,7 @@ package com.daoren.web.config;
 
 import com.daoren.common.base.entity.Result;
 import com.daoren.web.ser.ResultSerializer;
+import com.daoren.web.worker.PandaRequestWorker;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,8 @@ public class PandaWebMvcConfig extends WebMvcConfigurationSupport {
     private ObjectMapper objectMapper;
     @Resource
     private ResultSerializer resultSerializer;
+    @Resource
+    private DateTimeFormatter dateTimeFormatter;
 
     @PostConstruct
     public void init() {
@@ -84,5 +88,13 @@ public class PandaWebMvcConfig extends WebMvcConfigurationSupport {
         converters.add(stringHttpMessageConverter());
         adapter.setMessageConverters(converters);
         return adapter;
+    }
+
+    @Bean
+    public PandaRequestWorker requestWorker() {
+        final PandaRequestWorker pandaRequestWorker = new PandaRequestWorker();
+        PandaRequestWorker.dateTimeFormatter = dateTimeFormatter;
+        PandaRequestWorker.isShowResult = false;
+        return pandaRequestWorker;
     }
 }

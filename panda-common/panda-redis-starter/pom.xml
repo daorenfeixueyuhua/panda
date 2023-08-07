@@ -43,6 +43,10 @@
             <groupId>com.daoren</groupId>
             <artifactId>panda-json-stater</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.daoren</groupId>
+            <artifactId>panda-thread-core</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

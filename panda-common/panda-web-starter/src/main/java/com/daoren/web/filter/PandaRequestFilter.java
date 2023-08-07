@@ -1,5 +1,8 @@
 package com.daoren.web.filter;
 
+import com.daoren.common.base.entity.Result;
+import com.daoren.thread.context.RequestContext;
+import com.daoren.thread.worker.AbstractProcessWorker;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
@@ -23,6 +26,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +39,14 @@ import java.util.Map;
  * @since :
  */
 @Slf4j
-public class LogFilter extends OncePerRequestFilter {
+public class PandaRequestFilter extends OncePerRequestFilter {
+
+    private static final ObjectMapper objectMapper;
+
+    static {
+        objectMapper = new ObjectMapper();
+    }
+
     private static String toJson(Object object) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -49,7 +60,7 @@ public class LogFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        long requestTime = System.currentTimeMillis();
+        LocalDateTime startTime = LocalDateTime.now();
         String uri = request.getRequestURI();
         String contextPath = request.getContextPath();
         String url = uri.substring(contextPath.length());
@@ -61,6 +72,11 @@ public class LogFilter extends OncePerRequestFilter {
 //		输出请求体
         String requestBody = "";
         String requestContentType = request.getHeader(HttpHeaders.CONTENT_TYPE);
+        final Map<String, String[]> parameterMap = request.getParameterMap();
+        if (parameterMap.size() != 0) {
+            RequestContext.REQUEST_PARAMS.set(objectMapper.readValue(objectMapper.writeValueAsString(parameterMap), Map.class));
+            requestContentType = null;
+        }
 
         if (requestContentType != null) {
 //			xml json
@@ -80,6 +96,7 @@ public class LogFilter extends OncePerRequestFilter {
             } else if (requestContentType.startsWith(MediaType.MULTIPART_FORM_DATA_VALUE)) {
                 requestBody = getFormParam(request);
             }
+            RequestContext.REQUEST_PARAMS.set(objectMapper.readValue(requestBody, Map.class));
         }
 
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -90,20 +107,23 @@ public class LogFilter extends OncePerRequestFilter {
             }
         };
 
-        filterChain.doFilter(request, response);
-
-        long costTime = System.currentTimeMillis() - requestTime;
+        LocalDateTime endTime = LocalDateTime.now();
         String responseBody = "";
-//		暂定只有json 输出响应体
-        String contentType = response.getHeader(HttpHeaders.CONTENT_TYPE);
-        if (contentType != null && contentType.startsWith(MediaType.APPLICATION_JSON_VALUE)) {
-            responseBody = byteArrayOutputStream.toString();
-        }
-        // todo 需要进行显示优化
-        if (response.getStatus() >= 200 && response.getStatus() < 300) {
-            log.info("URL:{}, total time:{} ms, responseCode:{}, requestBody:{}, responseBody:{}", url, costTime, response.getStatus(), requestBody, responseBody);
-        } else {
-            log.error("URL:{}, total time:{} ms, responseCode:{}, requestBody:{}, responseBody:{}", url, costTime, response.getStatus(), requestBody, responseBody);
+        Result result = null;
+        try {
+            filterChain.doFilter(request, response);
+
+            String contentType = response.getHeader(HttpHeaders.CONTENT_TYPE);
+            if (contentType != null && contentType.startsWith(MediaType.APPLICATION_JSON_VALUE)) {
+                responseBody = byteArrayOutputStream.toString();
+            }
+            endTime = LocalDateTime.now();
+            AbstractProcessWorker.submit(url, responseBody, startTime, endTime, null);
+        } catch (Exception e) {
+            AbstractProcessWorker.submit(url, responseBody, startTime, endTime, e);
+        } finally {
+            // todo 好像没有清理掉
+            RequestContext.clearAll();
         }
     }
 

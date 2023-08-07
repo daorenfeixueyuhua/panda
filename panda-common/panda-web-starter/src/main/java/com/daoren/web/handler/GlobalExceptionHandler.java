@@ -42,6 +42,7 @@ public class GlobalExceptionHandler {
     public Result handlerRuntimeException(RuntimeException ex, HttpServletRequest request,
                                           HttpServletResponse response) {
         response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        log.error(ex.getMessage(), ex);
         return Result.fail(ex.getMessage());
     }
 
@@ -67,6 +68,7 @@ public class GlobalExceptionHandler {
                         item.getDefaultMessage()})
         ).collect(Collectors.toList());
         response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        log.error(ex.getMessage(), ex);
         return Result.fail(errorMessage.toString());
     }
 
@@ -92,6 +94,7 @@ public class GlobalExceptionHandler {
                         item.getMessage()})
         ).collect(Collectors.toList());
         response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        log.error(ex.getMessage(), ex);
         return Result.fail(errorMessage.toString());
     }
 }

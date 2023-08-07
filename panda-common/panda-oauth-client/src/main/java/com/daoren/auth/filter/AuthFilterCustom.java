@@ -2,7 +2,7 @@ package com.daoren.auth.filter;
 
 import com.daoren.auth.constant.SecurityConstant;
 import com.daoren.auth.models.JwtTokenInfo;
-import com.daoren.common.base.context.OpenFeignTokenInfoContext;
+import com.daoren.common.base.context.TokenInfoContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -40,9 +40,9 @@ public class AuthFilterCustom extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        OpenFeignTokenInfoContext.setToken(tokeInfo);
+        TokenInfoContext.setToken(tokeInfo);
         JwtTokenInfo jwtTokenInfo = objectMapper.readValue(tokeInfo, JwtTokenInfo.class);
-        log.info(SecurityConstant.TOKEN_INFO + " : " + objectMapper.writeValueAsString(jwtTokenInfo));
+        // log.info(SecurityConstant.TOKEN_INFO + " : " + objectMapper.writeValueAsString(jwtTokenInfo));
         final List<String> authorities1 = jwtTokenInfo.getAuthorities();
         String[] authorities = new String[authorities1.size()];
         authorities1.toArray(authorities);
@@ -55,5 +55,6 @@ public class AuthFilterCustom extends OncePerRequestFilter {
         authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         filterChain.doFilter(request, response);
+        TokenInfoContext.clearAll();
     }
 }

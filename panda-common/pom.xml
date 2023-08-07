@@ -24,6 +24,7 @@
         <module>panda-user-core</module>
         <module>panda-oauth-client</module>
         <module>panda-oauth-core</module>
+        <module>panda-thread-core</module>
     </modules>
 
     <properties>
