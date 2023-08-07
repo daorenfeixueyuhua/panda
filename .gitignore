@@ -4,3 +4,7 @@
 **/node_modules/
 **/package-lock.json
 **/rebel.xml
+# nginx
+/nginx/nginx-1.23.3/html/
+/nginx/nginx-1.23.3/logs/
+/sql/backup/
