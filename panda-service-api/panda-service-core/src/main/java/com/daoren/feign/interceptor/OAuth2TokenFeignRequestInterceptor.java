@@ -1,7 +1,7 @@
 package com.daoren.feign.interceptor;
 
 import com.daoren.auth.constant.SecurityConstant;
-import com.daoren.common.base.context.OpenFeignTokenInfoContext;
+import com.daoren.common.base.context.TokenInfoContext;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 
@@ -13,8 +13,7 @@ import feign.RequestTemplate;
 public class OAuth2TokenFeignRequestInterceptor implements RequestInterceptor {
     @Override
     public void apply(RequestTemplate template) {
-        final String tokenInfo = OpenFeignTokenInfoContext.token.get();
+        final String tokenInfo = TokenInfoContext.token.get();
         template.header(SecurityConstant.TOKEN_INFO, tokenInfo);
-        OpenFeignTokenInfoContext.clearToken();
     }
 }

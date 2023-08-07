@@ -36,5 +36,13 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.daoren</groupId>
+            <artifactId>panda-thread-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>transmittable-thread-local</artifactId>
+        </dependency>
     </dependencies>
 </project>
